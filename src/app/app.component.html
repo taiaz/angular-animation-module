@@ -1,0 +1,57 @@
+<div class="container">
+  <a
+    href="https://furetechnews.com/angular-animation-module-with-an-example/"
+    target="_blank"
+  >
+    <h5 class="card-title">Angular animation module with an example</h5>
+  </a>
+  <section>
+    <div *ngFor="let item of slideItems; let i = index">
+      <img *ngIf="i == counter" @fade [src]="slideItems[i].src" />
+    </div>
+    <div class="button-group">
+      <button
+        class="btn btn-danger"
+        (click)="showPreviousImage()"
+        [disabled]="disabledPrev"
+      >
+        Previous
+      </button>
+      <button
+        class="btn btn-danger"
+        (click)="showNextImage()"
+        [disabled]="disabledNext"
+      >
+        Next
+      </button>
+    </div>
+  </section>
+
+  <button class="btn btn-primary" (click)="hideCard = !hideCard">
+    <span>{{ hideCard === false ? 'Hide Card' : 'Show Card' }}</span>
+  </button>
+  <section [@displayState]="hideCard ? 'inactive' : 'active'">
+    <div class="card" style="width: 18rem;">
+      <img
+        class="card-img-top"
+        src="../assets/images/angular-logo.png"
+        alt="Angular logo"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      [@rotateBoxState]="rotate ? 'inactive' : 'active'"
+      class="box"
+      (click)="rotate = !rotate"
+    ></div>
+  </section>
+  <router-outlet></router-outlet>
+</div>
